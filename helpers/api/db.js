@@ -66,11 +66,8 @@ function servicesModel(sequelize) {
         image: { type: DataTypes.STRING, allowNull: false },
     };
 
-    const options = {
-        
-    };
 
-    return sequelize.define('Services', attributes, options);
+    return sequelize.define('Services', attributes);
 }
 
 function occasionModel(sequelize) {
@@ -87,11 +84,8 @@ function occasionModel(sequelize) {
         image3: { type: DataTypes.STRING, allowNull: false },
     };
 
-    const options = {
-        
-    };
 
-    return sequelize.define('Services', attributes, options);
+    return sequelize.define('Services', attributes);
 }
 
 
@@ -106,11 +100,8 @@ function horaireModel(sequelize) {
         fin_pm: { type: DataTypes.STRING, allowNull: false },
     };
 
-    const options = {
-        
-    };
 
-    return sequelize.define('Horaire', attributes, options);
+    return sequelize.define('Horaire', attributes);
 }
 
 
@@ -121,11 +112,8 @@ function commentaireModel(sequelize) {
         note: { type: DataTypes.INTEGER, allowNull: false },
     };
 
-    const options = {
-        
-    };
 
-    return sequelize.define('Commentaire', attributes, options);
+    return sequelize.define('Commentaire', attributes);
 }
 
 
@@ -140,11 +128,8 @@ function contactModel(sequelize) {
         action: { type: DataTypes.STRING, allowNull: true },
     };
 
-    const options = {
-        
-    };
 
-    return sequelize.define('Contact', attributes, options);
+    return sequelize.define('Contact', attributes);
 }
 
 
