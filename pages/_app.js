@@ -1,11 +1,15 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Header from 'components/Header';
+import Script from 'next/script';
 
 import 'styles/globals.css';
 
+
 import { userService } from 'services';
 import { Nav, Alert } from 'components';
+import Footer from 'components/Footer';
 
 export default App;
 
@@ -53,14 +57,18 @@ function App({ Component, pageProps }) {
             <Head>
                 <title>garage v-Parrot</title>
             </Head>
-
-            <div className={`app-container ${user ? 'bg-light' : ''}`}>
-                <Nav />
+            <Header />
+            <div className={`app-container ${user ? 'bg-light' : ''}`}>  
                 <Alert />
+                <Script
+                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+                    crossorigin="anonymous" />
                 {authorized &&
                     <Component {...pageProps} />
                 }
             </div>
+            <Footer />
         </>
     );
 }

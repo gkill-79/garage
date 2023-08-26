@@ -1,3 +1,26 @@
+
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+:root {
+  --primary: #333333;
+  --secondary: #fe7000;
+  --couleur-texte1: #fff;
+}
+
 .app-container {
-  min-height: 350px;
+  margin-top: 150px;
+  min-height: 430px;
 }

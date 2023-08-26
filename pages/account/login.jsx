@@ -34,9 +34,9 @@ function Login() {
     const { register, handleSubmit, formState } = useForm(formOptions);
     const { errors } = formState;
 
-    function onSubmit({ username, password }) {
+    function onSubmit({ email, password }) {
         alertService.clear();
-        return userService.login(username, password)
+        return userService.login(email, password)
             .then(() => {
                 // get return url from query parameters or default to '/'
                 const returnUrl = router.query.returnUrl || '/';
@@ -52,9 +52,9 @@ function Login() {
                 <div className="card-body">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="mb-3">
-                            <label className="form-label">Username</label>
-                            <input name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} />
-                            <div className="invalid-feedback">{errors.username?.message}</div>
+                            <label className="form-label">Email</label>
+                            <input name="email" type="text" {...register('email')} className={`form-control ${errors.email ? 'is-invalid' : ''}`} />
+                            <div className="invalid-feedback">{errors.email?.message}</div>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>

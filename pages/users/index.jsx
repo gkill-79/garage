@@ -42,13 +42,13 @@ function Index() {
                         <tr key={user.id}>
                             <td>{user.firstName}</td>
                             <td>{user.lastName}</td>
-                            <td>{user.username}</td>
+                            <td>{user.email}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 <Link href={`/users/edit/${user.id}`} className="btn btn-sm btn-primary me-1">Edit</Link>
                                 <button onClick={() => deleteUser(user.id)} className="btn btn-sm btn-danger btn-delete-user" style={{ width: '60px' }} disabled={user.isDeleting}>
                                     {user.isDeleting
                                         ? <span className="spinner-border spinner-border-sm"></span>
-                                        : <span>Delete</span>
+                                        : <span>effacer</span>
                                     }
                                 </button>
                             </td>
@@ -64,7 +64,7 @@ function Index() {
                     {users && !users.length &&
                         <tr>
                             <td colSpan="4" className="text-center">
-                                <div className="p-2">No Users To Display</div>
+                                <div className="p-2">il n&apos;y a pas d&apos;utilisateur</div>
                             </td>
                         </tr>
                     }
