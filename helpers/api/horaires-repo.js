@@ -1,7 +1,7 @@
 
 import { db } from 'helpers/api';
 
-export const usersRepo = {
+export const horairesRepo = {
     getAll,
     getById,
     create,

@@ -26,7 +26,7 @@ async function initialize() {
     db.Horaire = horaireModel(sequelize);
     db.Commentaire = commentaireModel(sequelize);
     db.Contact = contactModel(sequelize);
-
+    db.Services.belongsTo(db.User, { foreignKey: 'userId'})
 
     // sync all models with database
     await sequelize.sync({ alter: true });
@@ -64,6 +64,7 @@ function servicesModel(sequelize) {
         titre: { type: DataTypes.STRING, allowNull: false },
         description: { type: DataTypes.TEXT, allowNull: false },
         image: { type: DataTypes.STRING, allowNull: false },
+        prix: { type: DataTypes.FLOAT, allowNull: false },
     };
 
 
@@ -92,16 +93,15 @@ function occasionModel(sequelize) {
 function horaireModel(sequelize) {
     const attributes = {
         jour: { type: DataTypes.STRING, allowNull: false },
-        fermeture_am: { type: DataTypes.TINYINT, allowNull: false },
-        fermeture_pm: { type: DataTypes.TINYINT, allowNull: false },
-        debut_am: { type: DataTypes.STRING, allowNull: false },
-        fin_am: { type: DataTypes.STRING, allowNull: false },
-        debut_pm: { type: DataTypes.STRING, allowNull: false },
-        fin_pm: { type: DataTypes.STRING, allowNull: false },
+        debut_am: { type: DataTypes.STRING, allowNull: true },
+        fin_am: { type: DataTypes.STRING, allowNull: true },
+        debut_pm: { type: DataTypes.STRING, allowNull: true },
+        fin_pm: { type: DataTypes.STRING, allowNull: true },
+        fermeture_am: { type: DataTypes.TINYINT, allowNull: true, defaultValue: 0 },
+        fermeture_pm: { type: DataTypes.TINYINT, allowNull: true, defaultValue: 0 },
     };
 
-
-    return sequelize.define('Horaire', attributes);
+    return sequelize.define('Horaire', attributes);
 }
 
 

@@ -1,13 +1,22 @@
 import React from "react";
 import styles from "styles/footer.module.css";
-
+import { SectionHoraire } from "./horaires";
+import { useState, useEffect } from 'react'
+import { userService } from 'services'
+import { NavLink } from '.'
 const Footer = () => {
+  const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        const subscription = userService.user.subscribe((x) => setUser(x))
+        return () => subscription.unsubscribe()
+    }, [])
   return (
     <footer className={` pt-5 ${styles.couleurFooter}`}>
       <div className="container">
         <div className="row">
           <div className="col-lg-4">
-            <h4>Mpower Gym</h4>
+            <h4>Garage V.Parrot</h4>
             <div className={styles.trait}></div>
             <ul className={`lh-lg ${styles.liste}`}>
               <li> Adresse : </li>
@@ -17,29 +26,33 @@ const Footer = () => {
           </div>
 
           <div className="col-lg-4">
-            <h4> Aide & Informations</h4>
-            <div className={styles.trait}></div>
-            <ul className={`lh-lg ${styles.liste}`}>
-              
-              
-              <li> Contact</li>
-              <li> Blog</li>
-              <li> La Franchise</li>
-            </ul>
-          </div>
+                        <h4>Informations</h4>
+                        <div className={styles.trait}></div>
+                        <ul className={`lh-lg ${styles.liste}`}>
+                            {user &&
+                            (user.roles === 'ADMIN' ||
+                                user.roles === 'EMPLOYEE') ? (
+                                <li className="nav-item">
+                                    <NavLink
+                                        href={'/admin'}
+                                        className="nav-link "
+                                    >
+                                        Administration
+                                    </NavLink>
+                                </li>
+                            ) : (
+                                ''
+                            )}
+
+                            <li> Contact</li>
+                            <li> Occasions</li>
+                        </ul>
+                    </div>
 
           <div className="col-lg-4">
             <h4>Horaires</h4>
             <div className={styles.trait}></div>
-            <ul className={`lh-lg ${styles.liste}`}>
-              <li> Lundi - 06h00 - 23h00</li>
-              <li> Mardi - 06h00 - 23h00</li>
-              <li> Mercredi - 06h00 - 23h00</li>
-              <li>Jeudi - 06h00 - 23h00</li>
-              <li>Vendredi - 06h00 - 23h00</li>
-              <li>Samedi - 06h00 - 23h00</li>
-              <li>Dimanche - 06h00 - 23h00</li>
-            </ul>
+            <SectionHoraire />
           </div>
         </div>
       </div>
@@ -47,4 +60,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer;

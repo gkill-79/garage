@@ -33,13 +33,13 @@ const ConditionalNav = () => {
 
           <li className="nav-item">
             <NavLink href={"/monclub"} className="nav-link ">
-              Notre Club
+              Occasions
             </NavLink>
           </li>
 
           <li className="nav-item">
             <NavLink href={"/abonnement"} className="nav-link ">
-              Abonnement
+              Commentaire
             </NavLink>
           </li>
           <li className="nav-item">

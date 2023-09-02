@@ -10,7 +10,7 @@ const Header = () => {
           <div className="container-fluid">
             <Link href="/" className={`navbar-brand ${styles.TitreSite}`}>
               {" "}
-              Mpower Gym
+              V Parrot GARAGE
             </Link>
 
             <button
