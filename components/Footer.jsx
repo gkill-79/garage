@@ -44,7 +44,14 @@ const Footer = () => {
                                 ''
                             )}
 
-                            <li> Contact</li>
+                                <li className="nav-item">
+                                    <NavLink 
+                                        href={'/contacts'} 
+                                        className="nav-link "
+                                    >
+                                        Contact
+                                    </NavLink>
+                                </li>
                             <li> Occasions</li>
                         </ul>
                     </div>
