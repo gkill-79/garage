@@ -32,18 +32,18 @@ const ConditionalNav = () => {
           </li> */}
 
           <li className="nav-item">
-            <NavLink href={"/monclub"} className="nav-link ">
+            <NavLink href={"/occasion"} className="nav-link ">
               Occasions
             </NavLink>
           </li>
 
           <li className="nav-item">
-            <NavLink href={"/abonnement"} className="nav-link ">
-              Commentaire
+            <NavLink href={"/services"} className="nav-link ">
+              Commentaires
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink href={"/profil"} className="nav-link ">
+            <NavLink href={"/contacts"} className="nav-link ">
               {user.firstName}
             </NavLink>
           </li>
@@ -72,14 +72,14 @@ const ConditionalNav = () => {
           </li> */}
 
           <li className="nav-item">
-            <NavLink href="/monclub" className="nav-link ">
-              Mon Club
+            <NavLink href="/occasions" className="nav-link ">
+              Occasions
             </NavLink>
           </li>
 
           <li className="nav-item">
-            <NavLink href={"/abonnement"} className="nav-link ">
-              Abonnement
+            <NavLink href={"/services"} className="nav-link ">
+              Services
             </NavLink>
           </li>
         </ul>

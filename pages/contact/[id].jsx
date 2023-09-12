@@ -62,7 +62,7 @@ function Contact() {
     } else {
       return (
         <Layout>
-          <Spinner />
+          <h3>Vous n&apos; avez pas les droits pour voir ce message</h3>
         </Layout>
       );
     }

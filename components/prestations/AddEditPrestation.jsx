@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import { prestationService, userService, alertService } from "services";
 // composant AddEdit est utilisé à la fois pour ajouter et modifier des utilisateurs, il contient un formulaire construit avec la bibliothèque React Hook Form et est utilisé par la page d'ajout d'utilisateur et la page de modification d'utilisateur .
@@ -13,8 +14,23 @@ export { AddEditPrestation };
 function AddEditPrestation(props) {
   const prestation = props?.prestation;
   const router = useRouter();
+  const [selectedImage, setSelectedImage] = useState("");
+
+  const [selectedFile, setSelectedFile] = useState();
 
   const [user, setUser] = useState(null);
+
+  const handleUpload = async () => {
+    try {
+      if (!selectedFile) return;
+      const formData = new FormData();
+      formData.append("myImage", selectedFile);
+      const { data } = await axios.post("/api/fileupload", formData);
+      console.log(data);
+    } catch (error) {
+      console.log(error.response?.data);
+    }
+  };
 
   useEffect(() => {
     const subscription = userService.user.subscribe((x) => setUser(x));
@@ -27,7 +43,6 @@ function AddEditPrestation(props) {
     title: Yup.string().required("Le titre est requis"),
     description: Yup.string().required("Un contenu est requis"),
     price: Yup.string().required("Un prix est requis"),
-    image: Yup.string().required("Une image est requise"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -45,6 +60,7 @@ function AddEditPrestation(props) {
 
   async function onSubmit(data) {
     alertService.clear();
+    data.image = selectedFile.name;
     try {
       // create or update service based on service prop
       let message;
@@ -105,14 +121,29 @@ function AddEditPrestation(props) {
         </div>
         <div className="row">
           <div className="mb-3 col">
-            <label className="form-label">Image</label>
-            <input
-              name="image"
-              type="text"
-              {...register("image")}
-              className={`form-control ${errors.image ? "is-invalid" : ""}`}
-            />
-            <div className="invalid-feedback">{errors.image?.message}</div>
+          <div className="max-w-4xl mx-auto p-20 space-y-6">
+            <label>
+              <input
+                type="file"
+                hidden
+                onChange={({ target }) => {
+                  if (target.files) {
+                    const file = target.files[0];
+                    setSelectedImage(URL.createObjectURL(file));
+                    setSelectedFile(file);
+                    console.log(file);
+                  }
+                }}
+              />
+              <div className="w-40 aspect-video rounded flex items-center justify-center border-2 border-dashed cursor-pointer">
+                {selectedImage ? (
+                  <img src={selectedImage} alt="" />
+                ) : (
+                  <span className="btn btn-primary me-2">Choisir Image</span>
+                )}
+              </div>
+            </label>
+          </div>
           </div>
         </div>
         <input
@@ -122,16 +153,20 @@ function AddEditPrestation(props) {
           {...register("userId")}
         />
         <div className="mb-3">
-          <button
-            type="submit"
-            disabled={formState.isSubmitting}
-            className="btn btn-primary me-2"
-          >
-            {formState.isSubmitting && (
-              <span className="spinner-border spinner-border-sm me-1"></span>
-            )}
-            Enregistrer
-          </button>
+        <button
+          type="submit"
+          disabled={formState.isSubmitting || !selectedFile}
+          onClick={handleUpload}
+          className="btn btn-primary me-2"
+        >
+          {formState.isSubmitting && (
+            <span className="spinner-border spinner-border-sm me-1"></span>
+          )}
+          {!selectedFile && (
+            <span className="me-1">Sélectionnez l&apos;image avant d&apos;</span>
+          )}
+          Enregistrer
+        </button>
           <button
             onClick={() => reset(formOptions.defaultValues)}
             type="button"

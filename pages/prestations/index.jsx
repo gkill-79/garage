@@ -53,9 +53,10 @@ function Index() {
                 <td>
                   <p> {prestation.description}</p>
                 </td>
-
-                <td>{prestation.image}</td>
+                
                 <td>{prestation.price}</td>
+                <td>{prestation.image}</td>
+                
                 <td style={{ whiteSpace: "nowrap" }}>
                   <Link
                     href={`/prestations/edit/${prestation.id}`}
@@ -64,7 +65,7 @@ function Index() {
                     Modifier
                   </Link>
                   <button
-                    onClick={() => deleteService(prestation.id)}
+                    onClick={() => deletePrestation(prestation.id)}
                     className="btn btn-sm btn-danger btn-delete-user"
                     style={{ width: "60px" }}
                     disabled={prestation.isDeleting}
