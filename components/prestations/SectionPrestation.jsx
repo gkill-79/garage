@@ -1,6 +1,8 @@
 import { prestationService } from "services";
 import { useState, useEffect } from "react";
 import styles from "styles/article.module.css";
+import Link from "next/link";
+import Image from "next/image";
 
 export { SectionPrestation };
 

@@ -24,3 +24,7 @@ body {
   margin-top: 150px;
   min-height: 430px;
 }
+
+.white {
+  color: #fff;
+}

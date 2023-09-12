@@ -1,3 +1,6 @@
+import SectionOne from 'components/SectionOne';
+import { SectionOccasion } from 'components/occasions';
+import { SectionPrestation } from 'components/prestations';
 import Link from 'next/link';
 
 import { userService } from 'services';
@@ -8,10 +11,9 @@ function Home() {
     return (
         <div className="p-4">
             <div className="container">
-                <h1>Bonjour {userService.userValue?.firstName}!</h1>
-                <p>Vous êtes connecté comme administrateur.</p>
-                <p><Link href="/users">Gestion Personnel</Link></p>
-                <p><Link href="/horaires">Gestion Horaires</Link></p>
+                <SectionOne />
+                <SectionPrestation />
+                <SectionOccasion />
             </div>
         </div>
     );

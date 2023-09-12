@@ -1,9 +1,8 @@
 import { occasionService } from "services";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import styles from "styles/article.module.css";
 
-
-export { Galery };
 
 function Galery() {
   const [occasions, setOccasions] = useState(null);
@@ -50,3 +49,5 @@ function Galery() {
  );
 
 }
+
+export default Galery;
