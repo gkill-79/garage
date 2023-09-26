@@ -4,5 +4,15 @@
   
   .btnNum{
     /* font-weight: 400; */
-    font-weight: 600
+    font-weight: 2200
+  }
+
+  .title-one {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+
+  .title-red {
+    color: #e60000;
   }

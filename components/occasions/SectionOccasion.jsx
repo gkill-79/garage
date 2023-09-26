@@ -1,6 +1,7 @@
 import { occasionService } from "services";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import styles from "styles/occasion.module.css";
 
 
 export { SectionOccasion };

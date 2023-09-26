@@ -33,8 +33,9 @@ async function initialize() {
   db.Horaire = horaireModel(sequelize);
   db.Commentaire = commentaireModel(sequelize);
   db.Contact = contactModel(sequelize);
-
+  db.Occasion.belongsTo(db.User, { foreignKey: "userId" });
   // sync all models with database
+
   await sequelize.sync({ alter: true });
 
   db.initialized = true;
@@ -84,7 +85,7 @@ function occasionModel(sequelize) {
     kilometre: { type: DataTypes.INTEGER, allowNull: false },
     place: { type: DataTypes.INTEGER, allowNull: false },
     carburant: { type: DataTypes.STRING, allowNull: false },
-    annee: { type: DataTypes.STRING, allowNull: false },
+    annee: { type: DataTypes.INTEGER, allowNull: false },
     image1: { type: DataTypes.STRING, allowNull: false },
     image2: { type: DataTypes.STRING, allowNull: false },
     image3: { type: DataTypes.STRING, allowNull: false },
@@ -126,5 +127,8 @@ function contactModel(sequelize) {
     telephone: { type: DataTypes.STRING, allowNull: true },
   };
 
-  return sequelize.define("Contact", attributes);
+  return sequelize.define("Contact", attributes);
 }
+
+
+
